@@ -2,7 +2,7 @@
 import 'location.dart';
 import 'networking.dart';
 
-const apiKey = 'ec0b0afbf13e3a2daae647231a0bbf14';
+const apiKey = 'oluchiken';
 
 class WeatherModel {
 
