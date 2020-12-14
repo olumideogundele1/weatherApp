@@ -3,13 +3,24 @@ import 'location.dart';
 import 'networking.dart';
 
 const apiKey = 'oluchiken';
+const weatherUrl = 'https://samples.openweathermap.org/data/2.5/weather';
 
 class WeatherModel {
+
+  Future<dynamic> getCityWeather(String city) async{
+    String url = '$weatherUrl?q=$city&appid=$apiKey&units=metric';
+    NetworkHelper networkHelper = NetworkHelper(url: url);
+
+    var weatherData = await networkHelper.getData();
+
+    return weatherData;
+  }
+
 
   Future<dynamic> getWeatherLocation() async{
     Location location = Location();
     await location.getLocation();
-    NetworkHelper networkHelper = NetworkHelper(url:'https://samples.openweathermap.org/data/2.5/weather?'
+    NetworkHelper networkHelper = NetworkHelper(url:'$weatherUrl?'
         'lat=${location.latitude}e&lon=${location.longitude}&appid=$apiKey&units=metric');
 
     return await networkHelper.getData();
